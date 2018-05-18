@@ -5,6 +5,9 @@
         <li v-for="(item, key) in items" :key=key class="list-group-item">{{item.title}} <time>{{item.date}}</time></li>
       </ul>
     </div>
+    <div class="row">
+      <myform @save="view"></myform>
+    </div>
   </div>
 </template>
 
@@ -16,10 +19,15 @@ export default {
     }
   },
   mounted: function() {
-    axios.get('/api/entry')
-    .then((res) => {
-      this.items = res.data.data;
-    });
+    this.view();
+  },
+  methods: {
+    view: function() {
+      axios.get('/api/entry')
+      .then((res) => {
+        this.items = res.data.data;
+      });
+    }
   }
 }
 </script>

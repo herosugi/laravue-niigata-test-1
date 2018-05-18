@@ -23,3 +23,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/entry', function () {
     return EntryResource::collection(Entry::all());
 });
+
+Route::post('/entry', function (Request $request) {
+    $entry = new Entry;
+    $entry->title = $request->input('title');
+    $entry->content = $request->input('content');
+
+    $entry->save();
+    return ['ok'];
+});
