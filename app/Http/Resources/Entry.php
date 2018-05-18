@@ -18,7 +18,7 @@ class Entry extends JsonResource
           'id' => $this->id,
           'title' => $this->title,
           'content' => $this->content,
-          'date' => $this->created_at,
+          'date' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }
 }
