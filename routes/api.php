@@ -36,3 +36,9 @@ Route::post('/entry', function (Request $request) {
 Route::get('/entry/{entry}',function (App\Entry $entry) {
     return new EntryResource($entry);
 });
+
+
+
+Route::delete('/entry/{entry}', function (App\Entry $entry) {
+  $entry->delete();
+});
