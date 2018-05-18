@@ -7,8 +7,12 @@
     <div class="row">
       <div class="col-md-6">
         <ul class="list-group">
-          <transition-group name="fade">
-            <li v-for="(item, key) in items" :key=key @click.stop.prepend="viewDatail(item.id)" class="list-group-item">{{item.title}} <time>{{item.date}}</time></li>
+          <transition-group name="list-complete">
+            <li v-for="(item) in items" :key=item.id class="list-group-item list-complete-item">
+              <span @click.stop.prevent="viewDatail(item.id)">{{item.title}}</span>
+              <time>{{item.date}}</time>
+              <button @click.stop.prevent="deleteItem(item.id)">削除</button>
+            </li>
           </transition-group>
         </ul>
       </div>
@@ -39,6 +43,12 @@ export default {
     },
     viewDatail: function(id) {
       this.detailId = id;
+    },
+    deleteItem: function(id) {
+      axios.delete('/api/entry/' + id)
+      .then((res) => {
+        this.view();
+      });
     }
   }
 }
