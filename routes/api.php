@@ -32,3 +32,7 @@ Route::post('/entry', function (Request $request) {
     $entry->save();
     return ['ok'];
 });
+
+Route::get('/entry/{entry}',function (App\Entry $entry) {
+    return new EntryResource($entry);
+});
